@@ -1,2 +1,19 @@
+Fonctionalités :
 Switcher tableau ligue 1/ligue 2 périodiquement
+    Camoufler entête tableau
 Revoir couleur fond horloge
+
+
+Revues :
+Faire une revue de code
+    Decouper inc.php
+    Ajouter des commentaires dans le code
+    css background-color à revoir pour programme tv (inherit body ?)
+
+Faire une revue de la gestion de configuration
+    gconf xplanet manquant
+
+
+Dette technique :
+Corriger meteo.js / javascript : erreurs console
+Réintégrer mode kiosk au démarrage raspberry
