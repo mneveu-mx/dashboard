@@ -31,6 +31,15 @@
   else if($block == 'checkhue'){
     echo checkhue();
   }
+  else if($block == 'checkchromecast'){
+    echo checkchromecast();
+  }
+  else if($block == 'gethuesalon'){
+    echo gethuesalon();
+  }
+  else if($block == 'gethuesdb'){
+    echo gethuesdb();
+  }
 
   /////////////////////////////////////////////////
   //  PING
