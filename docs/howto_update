@@ -1,0 +1,4 @@
+scp -r pi@192.168.1.38:/var/www/splash/ var/www/
+scp -r pi@192.168.1.38:/etc/init.d/update.sh etc/init.d/
+scp -r pi@192.168.1.38:/etc/apache2/ etc/
+scp -r pi@192.168.1.38:/home/pi/xplanet/copy.sh home/pi/xplanet/copy.sh
