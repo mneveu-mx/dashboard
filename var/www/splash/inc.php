@@ -85,7 +85,7 @@ function gethuecolor($pattern, $icon){
         }else if(!$on && $reachable){
                 $html.='<div class="hue_reachable"><img src="'.$icon.'" style="margin-top:30px;margin-left:42px;"/></div>';
         }else{
-                $html.='<img src="'.$icon.'_offline" style="margin-top:22px;margin-left:1px;"/>';
+                $html.='<img src="'.$icon.'_offline" style="margin-top:31px;margin-left:1px;"/>';
         }
         return $html;
 }

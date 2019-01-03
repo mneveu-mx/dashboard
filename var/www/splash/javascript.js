@@ -5,11 +5,32 @@ checkchromecast();
 checkhue();
 gethuesalon();
 gethuesdb();
+change();
    rss();
    horloge();
    meteo();
    conte();
 });
+
+
+/* Football switch mode */
+var counter = 0;
+
+function change() {
+  var innerHTML = "";
+  if(counter == 0){
+    innerHTML += '<iframe src="https://widgets.worldfootball.com/competition/188#?c_header=#4e4d4d&c_team=#95c596&columns=mp,mw,md,ml&tabs=table,matches&team_id=200&width_unit=pixels" width="345" height="650" frameborder="0"></iframe>';
+    counter="1";
+  }else{
+    innerHTML += '<iframe src="https://widgets.worldfootball.com/competition/192#?c_header=#4e4d4d&c_team=#95c596&columns=mp,mw,md,ml&tabs=table,matches&team_id=38&width_unit=pixels" width="345" height="650" frameborder="0"></iframe>';
+    counter="0";
+  }
+  $("#football").html(innerHTML);
+
+  football_counter = setTimeout("change()", 600000);
+}
+
+
 
 var xplanet_timeout;
 

@@ -1,6 +1,13 @@
 body{
   background-color:#cecece;
 }
+#football{
+  overflow: hidden;
+}
+iframe {
+    overflow: hidden;
+    margin-top: -100px;
+}
 
 .grid {
   display: grid;
@@ -12,7 +19,6 @@ body{
 }
 
 .blocks {
-/*    background: #00aeff; */
   background: black;
 }
 .blocks:nth-child(1){
