@@ -136,7 +136,8 @@ max-height: 415px; overflow: hidden;
 
 
 #meteo{
-  margin-left : 12px;
+  margin-left : 6px;
+  margin-top : 110px;
 }
 
 /* RSS */
