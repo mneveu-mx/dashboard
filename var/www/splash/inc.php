@@ -33,6 +33,14 @@ function getAllLights(){
 	$json=curl_download($url);
 	$lights=json_decode($json, true);
 }
+
+function getAllSensors(){
+        global $sensors;
+        $url='http://192.168.1.10/api/FHZToMU3yj6k7OPkexAZRPuS2qXtfr-AsoWCghq9/sensors';
+        $json=curl_download($url);
+        $sensors=json_decode($json, true);
+}
+
 function getIndex($name, $array){
     foreach($array as $key => $value){
         if(is_array($value) && $value['name'] == $name)
@@ -90,8 +98,54 @@ function gethuecolor($pattern, $icon){
         return $html;
 }
 function gethuesdb(){
-	return gethuecolor('HUE_SDB','img/hue_sdb.png');
+	global $lights;
+	global $sensors;
+	$history_sensorLastDetected=$total_pages = apc_fetch('temp_sdb');
+	$html=gethuecolor('HUE_SDB','img/hue_sdb.png');
+	getAllSensors();
+	$idLight=getIndex('HUE_SDB',$lights);
+	$idSensor=getIndex('Mouvement_SDB', $sensors);
+ 	$lightReachable=$lights[$idLight]["state"]["reachable"];
+        $lightOn=$lights[$idLight]["state"]["on"];
+	$sensorReachable=$sensors[$idSensor]["config"]["reachable"];
+	$sensorOn=$sensors[$idSensor]["config"]["on"];
+	$sensorLastDetected_gmt=$sensors[$idSensor]["state"]["lastupdated"];
+	$sensorLastDetected_date=new DateTime($sensorLastDetected_gmt);
+	$sensorLastDetected=$sensorLastDetected_date->getTimestamp();
+	$diff=$sensorLastDetected-$history_sensorLastDetected;
+	//DEBUG $html.=$history_sensorLastDetected."/".$sensorLastDetected."#".$diff;
+	if($sensorReachable && $sensorOn && $lightReachable)
+	if(($sensorLastDetected-$history_sensorLastDetected)>20){
+		/* Nouvelle détection */
+		if($lightOn){ //La lumière est allumée => il faut l'éteindre
+			sendStateToLight($idLight,false);	
+		}else{ //La lumière est éteinte => il faut l'allumer
+			sendStateToLight($idLight,true);
+		}
+		apc_store('temp_sdb', $sensorLastDetected);
+	}else if(($sensorLastDetected-$history_sensorLastDetected)>0){
+		apc_store('temp_sdb', $sensorLastDetected);
+	}
+
+	return $html;
 }
+
+function sendStateToLight($idLight, $state){
+$data = array('on'=>$state);
+$data_json = json_encode($data);
+
+$ch = curl_init();
+$url="http://192.168.1.10/api/FHZToMU3yj6k7OPkexAZRPuS2qXtfr-AsoWCghq9/lights/".$idLight."/state";
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($data_json)));
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response  = curl_exec($ch);
+print_r($url);
+curl_close($ch);
+}
+
 function gethuesalon(){
 	return gethuecolor('HUE_Salle','img/hue_salon.png');
 }

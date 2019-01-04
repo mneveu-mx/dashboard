@@ -182,7 +182,7 @@ function gethuesdb()
     }
   });
 
-  gethuesdb_timeout = setTimeout("gethuesdb()", 10000);
+  gethuesdb_timeout = setTimeout("gethuesdb()", 3000);
 }
 
 conte = document.getElementById('cont_NTkzNTB8NHwzfDF8M3xGOEEwQzJ8MnxGRkZGRkZ8Y3wx');enlace = document.getElementById('spa_NTkzNTB8NHwzfDF8M3xGOEEwQzJ8MnxGRkZGRkZ8Y3wx');anchor = document.getElementById('a_NTkzNTB8NHwzfDF8M3xGOEEwQzJ8MnxGRkZGRkZ8Y3wx');var url = anchor.href;var ua = navigator.userAgent.toLowerCase();check = function(r){return r.test(ua);};isWebKit = check(/webkit/);isGecko = !isWebKit && check(/gecko/);var text = '';if(isGecko){text = encodeURI(anchor.text);} else { text = encodeURI(anchor.innerText); } var exp1 = new RegExp('http://www.meteocity.com'); var exp2 = new RegExp('M%C3%A9t%C3%A9o'); var exp3 = new RegExp('o'); if (conte && enlace && anchor && exp1.test(url) && (exp2.test(text) || exp3.test(text)) ){ enlace.style.cssText = 'font:normal 10px/12px Tahoma, Arial, Helvetica, serif; color:#333; padding:0 0 3px; text-decoration: none;'; conte.style.cssText = 'width:480px;'; elem = document.createElement('iframe'); elem.id = 'NTkzNTB8NHwzfDF8M3xGOEEwQzJ8MnxGRkZGRkZ8Y3wx'; elem.src = 'http://widget.meteocity.com/NTkzNTB8NHwzfDF8M3xGOEEwQzJ8MnxGRkZGRkZ8Y3wx/'; elem.frameBorder = 0; elem.allowTransparency = true; elem.scrolling = 'no'; elem.name = 'frame'; elem.height = '200'; elem.width = '480'; conte.insertBefore(elem,enlace); }
