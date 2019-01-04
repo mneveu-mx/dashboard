@@ -142,7 +142,6 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $response  = curl_exec($ch);
-print_r($url);
 curl_close($ch);
 }
 
