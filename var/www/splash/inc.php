@@ -167,7 +167,7 @@ function checkhue(){
 }
 
 function checkchromecast(){
-    return checkService('192.168.1.17', 'img/chromecast.png');
+    return checkService('192.168.1.50', 'img/chromecast.png');
 }
 
 
